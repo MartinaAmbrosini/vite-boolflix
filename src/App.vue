@@ -27,6 +27,7 @@ export default {
                     store.movieList = res.data.results;
                     console.log(store.movieList);
                     console.log(store.searchText);
+                    console.log(store.movieList[1]);
                 })
                 .catch(err => {
                     console.log(err);

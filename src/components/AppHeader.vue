@@ -19,7 +19,7 @@ export default {
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Cerca un titolo" v-model="store.searchText"
                         @keyup.enter="$emit('search')" aria-label="Search">
-                    <button class="btn btn-outline-danger" type="submit" @click="$emit('search')">Search</button>
+                    <button class="btn btn-outline-danger" type="submit" @click.prevent="$emit('search')">Search</button>
                 </form>
             </div>
         </nav>
