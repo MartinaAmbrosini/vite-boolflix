@@ -5,10 +5,19 @@ export default {
     props: {
         info: Object
     },
+    data() {
+        return {
+            lang: ["it", "de", "en", "es", "fr", "us"],
+        }
+    },
     methods: {
         getImagePath: function (img) {
             console.log("../assets/${img}.png")
-            return new URL("../assets/" + img + ".png", import.meta.url).href;
+            if (this.lang.includes(img)) {
+                return new URL("../assets/" + img + ".png", import.meta.url).href;
+            } else {
+                return new URL("../assets/zz.png", import.meta.url).href;
+            }
         }
     }
 };
