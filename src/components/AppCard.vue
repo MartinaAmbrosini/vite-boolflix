@@ -32,7 +32,11 @@ export default {
     <div class="lang">
         <img :src="getImagePath(info.original_language)" alt="">
     </div>
-    <div class="score">Voto: {{ info.vote_average }}</div>
+    <div class="score"> Voto:
+        <i class="fa-solid fa-star" style="color: #FFD43B;" v-for="n in (Math.round(info.vote_average / 2))">{{
+            console.log(n) }}</i>
+        <i class="fa-regular fa-star" style="color: #FFD43B;" v-for="n in (5 - Math.round(info.vote_average / 2)) "></i>
+    </div>
 </template>
 
 <style lang="scss" scoped></style>
