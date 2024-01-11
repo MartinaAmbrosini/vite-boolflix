@@ -4,9 +4,7 @@ import axios from 'axios';
 
 // importo componenti
 import AppHeader from './components/AppHeader.vue'
-import ListItem from './components/ListItem.vue'
-import AppSearch from './components/AppSearch.vue'
-import AppResult from './components/AppResult.vue'
+import AppMain from './components/AppMain.vue'
 
 // importo store
 import { store } from './store';
@@ -15,9 +13,7 @@ import { store } from './store';
 export default {
     components: {
         AppHeader,
-        ListItem,
-        AppSearch,
-        AppResult
+        AppMain,
     },
     data() {
         return {
@@ -41,10 +37,42 @@ export default {
                 .catch((err) => {
                     console.log("errori", err);
                 })
-        }
+
+            this.getTv();
+        },
+        getTv() {
+            let tvURL = store.tvApiURL;
+
+            if (store.searchText !== '') {
+                tvURL += `?api_key=${store.apiKey}&query=${store.searchText}`;
+            }
+
+            axios
+                .get(tvURL)
+                .then((res => {
+                    console.log(res.data.results);
+                    store.tvList = res.data.results;
+                }))
+                .catch((err) => {
+                    console.log("errori", err);
+                })
+        },
+    },
+    created() {
+        this.getMovie();
+
     }
+}
 </script>
 
-<template></template>
+<template>
+    <AppHeader @search="getMovie" />
+    <AppMain />
+</template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use './styles/general.scss' as *;
+@use './styles/partials/mixins' as *;
+@use './styles/partials/variables' as *;
+</style>
+
