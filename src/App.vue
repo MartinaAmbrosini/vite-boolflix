@@ -22,46 +22,27 @@ export default {
     },
     methods: {
         getMovie() {
-            let movieURL = store.movieApiURL;
-
-            if (store.searchText !== '') {
-                movieURL += `?api_key=${store.apiKey}&query=${store.searchText}`;
-            }
-
-            axios
-                .get(movieURL)
-                .then((res => {
-                    console.log(res.data.results);
-                    store.filmList = res.data.results;
-                }))
-                .catch((err) => {
-                    console.log("errori", err);
+            axios.get(store.movieApiURL + store.searchText)
+                .then(res => {
+                    store.movieList = res.data.results;
+                    console.log(store.movieList);
+                    console.log(store.searchText);
                 })
+                .catch(err => {
+                    console.log(err);
+                }),
+                axios.get(store.tvApiURL + store.searchText)
+                    .then(res => {
+                        store.tvList = res.data.results;
+                        console.log(store.tvList);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
 
-            this.getTv();
-        },
-        getTv() {
-            let tvURL = store.tvApiURL;
-
-            if (store.searchText !== '') {
-                tvURL += `?api_key=${store.apiKey}&query=${store.searchText}`;
-            }
-
-            axios
-                .get(tvURL)
-                .then((res => {
-                    console.log(res.data.results);
-                    store.tvList = res.data.results;
-                }))
-                .catch((err) => {
-                    console.log("errori", err);
-                })
-        },
+            store.searchText = '';
+        }
     },
-    created() {
-        this.getMovie();
-
-    }
 }
 </script>
 
