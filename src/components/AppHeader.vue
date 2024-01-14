@@ -15,7 +15,7 @@ export default {
     <header>
         <nav class="navbar bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" style="color: rgb(218, 1, 1); font-size: 30px; font-weight: bolder;">Boolflix</a>
+                <a class="navbar-brand" style="color: rgb(218, 1, 1); font-size: 30px; font-weight: bolder;">BOOLFLIX</a>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Cerca un titolo" v-model="store.searchText"
                         @keyup.enter="$emit('search')" aria-label="Search">

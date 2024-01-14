@@ -17,24 +17,33 @@ export default {
 }
 </script>
 
-<template>
+<template >
     <h2>FILM</h2>
-    <div class="card" v-for="movie in store.movieList">
-        <AppCard :info="movie" />
+    <div class="film d-flex flex-wrap justify-content-between p-5">
+        <div class="card text-bg-dark" v-for="movie in store.movieList">
+            <AppCard :info="movie" />
+        </div>
     </div>
 
+
     <h2>SERIE TV</h2>
-    <div class="card" v-for="series in store.tvList">
-        <AppCard :info="series" />
+    <div class="tv d-flex flex-wrap justify-content-between p-5">
+        <div class="card" v-for="series in store.tvList">
+            <AppCard :info="series" />
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 h2 {
     margin: 20px 30px;
+    font-weight: bolder;
 }
 
 .card {
-    margin: 30px;
+    margin: 15px 30px 0;
+    max-width: calc(100% / 6);
+    min-width: calc(100% / 6);
+    min-height: 448px;
 }
 </style>
